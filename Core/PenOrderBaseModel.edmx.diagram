@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ebf9c2bfc65427a96409ea1173d528e" Name="Diagram1">
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.Company" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.Customer" Width="1.5" PointX="3" PointY="9.375" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.CustomerType" Width="1.5" PointX="0.75" PointY="11.125" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.Order" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.Pen" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.PenType" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="OrderBaseBozyaModel.User" Width="1.5" PointX="0.75" PointY="8.625" />
+        <AssociationConnector Association="OrderBaseBozyaModel.FK_Pen_Company" />
+        <AssociationConnector Association="OrderBaseBozyaModel.FK_Customer_CustomerType" />
+        <AssociationConnector Association="OrderBaseBozyaModel.FK_Customer_User" />
+        <AssociationConnector Association="OrderBaseBozyaModel.FK_Order_Customer" />
+        <AssociationConnector Association="OrderBaseBozyaModel.FK_Order_Pen" />
+        <AssociationConnector Association="OrderBaseBozyaModel.FK_Pen_PenType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
