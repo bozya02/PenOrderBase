@@ -9,6 +9,9 @@ namespace Core
     public class DataAccess
     {
         public static List<Customer> GetCustomers() => OrderBaseBozyaEntities.GetContext().Customers.ToList();
+        public static List<Order> GetOrders() => OrderBaseBozyaEntities.GetContext().Orders.ToList();
+        public static List<Order> GetOrders(Customer customer) => GetOrders().FindAll(x => x.Customer == customer);
+        public static List<Pen> GetPens() => OrderBaseBozyaEntities.GetContext().Pens.ToList();
 
         public static Customer LoginCustomer(string login, string password) => GetCustomers().FirstOrDefault(x => x.User.Login == login && x.User.Password == password);
 

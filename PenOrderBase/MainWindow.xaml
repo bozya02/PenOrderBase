@@ -12,7 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="tbtitle"/>
+        <TextBlock x:Name="tbtitle" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <StackPanel x:Name="spButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 5">
             <Button x:Name="btnBack" Content="Назад" Click="btnBack_Click"/>

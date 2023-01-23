@@ -6,9 +6,55 @@
       xmlns:local="clr-namespace:PenOrderBase.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OrdersPage">
-
+      Title="Заказы">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
     <Grid>
-        <TextBlock Text="Пока что пустая страница. Авторизация успешна!"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Дата"/>
+            <DatePicker x:Name="dpDate" Grid.Row="1" FontSize="24"
+                        SelectedDateChanged="dpDate_SelectedDateChanged"/>
+
+            <TextBlock Text="Сортировка" Grid.Column="1"/>
+            <ComboBox x:Name="cbSortings" Grid.Row="1" Grid.Column="1" FontSize="24"
+                      ItemsSource="{Binding Sortings.Kyes}" SelectedIndex="0"
+                      SelectionChanged="cbSortings_SelectionChanged"/>
+
+            <Button x:Name="btnNewOrder" Content="Новый заказ"
+                    Grid.Column="2" Grid.RowSpan="2"
+                    Click="btnNewOrder_Click"/>
+        </Grid>
+
+        <ListView x:Name="lvOrders" ItemsSource="{Binding FilteredOrders}" Grid.Row="1" FontSize="24" SelectionChanged="lvOrders_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="Ручка" DisplayMemberBinding="{Binding Pen.Name, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="Тип ручки" DisplayMemberBinding="{Binding Pen.PenType.Name, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Pen.Price, StringFormat=d, ConverterCulture=ru}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>
