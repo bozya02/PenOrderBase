@@ -7,18 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="tbtitle" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button x:Name="btnMenu" Content="Меню" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="5 10" Click="btnMenu_Click"/>
 
-        <StackPanel x:Name="spButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 5">
+        <TextBlock x:Name="tbtitle" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
+
+        <StackPanel x:Name="spButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 5" Grid.Column="1">
             <Button x:Name="btnBack" Content="Назад" Click="btnBack_Click"/>
             <Button x:Name="btnForward" Content="Вперед" Click="btnForward_Click"/>
         </StackPanel>
 
-        <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Grid x:Name="gridMenu" Grid.RowSpan="2" Width="0" MaxWidth="200" Background="Red">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btnOrders" Content="Заказы" Click="btnOrders_Click"/>
+            <Button x:Name="btnPens" Content="Ручки" Grid.Row="1" Click="btnPens_Click"/>
+        </Grid>
+        
+        <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden" Grid.Column="1"/>
     </Grid>
 </Window>

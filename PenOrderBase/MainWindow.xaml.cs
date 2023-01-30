@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PenOrderBase
 {
@@ -21,11 +22,17 @@ namespace PenOrderBase
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer _timer;
+        public bool MenuVisible { get; set; } = true;
         public MainWindow()
         {
             InitializeComponent();
             frame.NavigationService.Navigate(new AuthorizationPage());
             frame.Navigated += Frame_Navigated;
+
+            _timer = new DispatcherTimer();
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            _timer.Tick += Timer_Tick;
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
@@ -34,15 +41,42 @@ namespace PenOrderBase
 
             if (content is AuthorizationPage)
             {
-                spButtons.Visibility = Visibility.Hidden;
+                spButtons.Visibility = Visibility.Collapsed;
+            }
+            else if (content is RegistartionPage)
+            {
+                spButtons.Visibility = Visibility.Visible;
+                btnForward.Visibility = Visibility.Collapsed;
             }
             else
             {
                 spButtons.Visibility = Visibility.Visible;
-                btnForward.Visibility = Visibility.Hidden;
+                btnForward.Visibility = Visibility.Visible;
             }
 
             tbtitle.Text = content.Title;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (MenuVisible)
+            {
+                gridMenu.Width += 2;
+                if (gridMenu.Width >= 200)
+                {
+                    _timer.Stop();
+                    MenuVisible = false;
+                }
+            }
+            else
+            {
+                gridMenu.Width -= 2;
+                if (gridMenu.Width <= 0)
+                {
+                    _timer.Stop();
+                    MenuVisible = true;
+                }
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -55,6 +89,37 @@ namespace PenOrderBase
         {
             if (frame.CanGoForward)
                 frame.GoForward();
+        }
+
+        private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+            _timer.Start();
+        }
+
+        private void btnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            var content = frame.Content as Page;
+
+            if (content is AuthorizationPage || content is RegistartionPage)
+            {
+                MessageBox.Show("Необходимо авторизоваться, урод!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return;
+            }
+
+            frame.Navigate(new OrdersPage());
+        }
+
+        private void btnPens_Click(object sender, RoutedEventArgs e)
+        {
+            var content = frame.Content as Page;
+
+            if (content is AuthorizationPage || content is RegistartionPage)
+            {
+                MessageBox.Show("Необходимо авторизоваться, урод!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return;
+            }
+
+            frame.Navigate(new PensListPage());
         }
     }
 }
