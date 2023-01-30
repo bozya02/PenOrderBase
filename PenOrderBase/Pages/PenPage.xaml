@@ -7,8 +7,58 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Ручка">
-
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Название"/>
+        <TextBox Text="{Binding Pen.Name}" Grid.Column="1"/>
+
+        <TextBlock Text="Тип" Grid.Row="1"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="30 5"
+                  ItemsSource="{Binding PenTypes}" SelectedItem="{Binding Pen.PenType}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="Компания" Grid.Row="2"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="30 5"
+                  ItemsSource="{Binding Companies}" SelectedItem="{Binding Pen.Company}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="Цена" Grid.Row="3"/>
+        <TextBox Text="{Binding Pen.Price}" Grid.Row="3" Grid.Column="1"/>
+
+        <TextBlock Text="Цвет" Grid.Row="4"/>
+        <TextBox Text="{Binding Pen.Color}" Grid.Row="4" Grid.Column="1"/>
+
+        <Button x:Name="btnDelete" Content="Удалить" HorizontalAlignment="Center" Grid.Row="5" Click="btnDelete_Click"/>
+        <Button x:Name="btnSave" Content="Сохарнить" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" Click="btnSave_Click"/>
     </Grid>
 </Page>

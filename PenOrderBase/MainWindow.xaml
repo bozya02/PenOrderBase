@@ -25,7 +25,7 @@
             <Button x:Name="btnForward" Content="Вперед" Click="btnForward_Click"/>
         </StackPanel>
 
-        <Grid x:Name="gridMenu" Grid.RowSpan="2" Width="0" MaxWidth="200" Background="Red">
+        <Grid x:Name="gridMenu" Grid.RowSpan="2" Width="0" MaxWidth="200" Background="BurlyWood">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>

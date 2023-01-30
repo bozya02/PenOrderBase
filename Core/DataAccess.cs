@@ -8,10 +8,13 @@ namespace Core
 {
     public class DataAccess
     {
-        public static List<Customer> GetCustomers() => OrderBaseBozyaEntities.GetContext().Customers.ToList();
+        public delegate void AddNewItem();
+        public static event AddNewItem AddNewItemEvent;
+
+        public static List<Customer> GetCustomers() => OrderBaseBozyaEntities.GetContext().Customers.ToList().FindAll(x => !x.IsDeleted);
         public static List<Order> GetOrders() => OrderBaseBozyaEntities.GetContext().Orders.ToList();
         public static List<Order> GetOrders(Customer customer) => GetOrders().FindAll(x => x.Customer == customer);
-        public static List<Pen> GetPens() => OrderBaseBozyaEntities.GetContext().Pens.ToList();
+        public static List<Pen> GetPens() => OrderBaseBozyaEntities.GetContext().Pens.ToList().FindAll(x => !x.IsDeleted);
         public static List<PenType> GetPenTypes() => OrderBaseBozyaEntities.GetContext().PenTypes.ToList();
         public static List<Company> GetCompanies() => OrderBaseBozyaEntities.GetContext().Companies.ToList();
 
@@ -25,6 +28,13 @@ namespace Core
                 OrderBaseBozyaEntities.GetContext().Customers.Add(customer);
 
             OrderBaseBozyaEntities.GetContext().SaveChanges();
+            AddNewItemEvent?.Invoke();
+        }
+
+        public static void DeleteCustomer(Customer customer)
+        {
+            customer.IsDeleted = true;
+            SaveCustomer(customer);
         }
 
         public static void SavePen(Pen pen)
@@ -33,6 +43,22 @@ namespace Core
                 OrderBaseBozyaEntities.GetContext().Pens.Add(pen);
 
             OrderBaseBozyaEntities.GetContext().SaveChanges();
+            AddNewItemEvent?.Invoke();
+        }
+
+        public static void DeletePen(Pen pen)
+        {
+            pen.IsDeleted = true;
+            SavePen(pen);
+        }
+
+        public static void SaveOrder(Order order)
+        {
+            if (order.Id == 0)
+                OrderBaseBozyaEntities.GetContext().Orders.Add(order);
+
+            OrderBaseBozyaEntities.GetContext().SaveChanges();
+            AddNewItemEvent?.Invoke();
         }
     }
 }

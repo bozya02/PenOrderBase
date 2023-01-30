@@ -25,6 +25,7 @@ namespace Core
         public string Name { get; set; }
         public string Address { get; set; }
         public Nullable<int> UserId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual CustomerType CustomerType { get; set; }
         public virtual User User { get; set; }

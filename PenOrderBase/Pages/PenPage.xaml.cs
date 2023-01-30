@@ -35,7 +35,7 @@ namespace PenOrderBase.Pages
 
             if (isNew)
             {
-                Title = $"Новый {Title}";
+                Title = $"Новая {Title}";
             }
             else
             {
@@ -44,6 +44,18 @@ namespace PenOrderBase.Pages
             }
 
             this.DataContext = this;
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DataAccess.DeletePen(Pen);
+            NavigationService.GoBack();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            DataAccess.SavePen(Pen);
+            NavigationService.GoBack();
         }
     }
 }

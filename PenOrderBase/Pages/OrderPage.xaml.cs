@@ -34,6 +34,8 @@ namespace PenOrderBase.Pages
             if (isNew)
             {
                 Title = $"Новый {Title}";
+                Order.Date = DateTime.Now;
+                Order.Customer = App.Customer;
             }
             else
             {
@@ -42,6 +44,12 @@ namespace PenOrderBase.Pages
             }
 
             this.DataContext = this;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            DataAccess.SaveOrder(Order);
+            NavigationService.GoBack();
         }
     }
 }

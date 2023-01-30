@@ -46,9 +46,15 @@
             <ComboBox x:Name="cbPenType" Grid.Row="1" Grid.Column="2"
                       FontSize="24" Margin="5"
                       ItemsSource="{Binding PenTypes}" SelectedIndex="0"
-                      SelectionChanged="cbPenType_SelectionChanged"/>
+                      SelectionChanged="cbPenType_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             
-            <Button x:Name="btnNewOrder" Content="Новый заказ"
+            <Button x:Name="btnNewPen" Content="Новая ручка"
                     Grid.Column="3" Grid.RowSpan="2"
                     Click="btnNewPen_Click"/>
         </Grid>
@@ -59,8 +65,8 @@
                     <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id, StringFormat=d, ConverterCulture=ru}"/>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Тип ручки" DisplayMemberBinding="{Binding PenType.Name}"/>
-                    <GridViewColumn Header="Компания" DisplayMemberBinding="{Binding Companyю.Name}"/>
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Pen.Price}"/>
+                    <GridViewColumn Header="Компания" DisplayMemberBinding="{Binding Company.Name}"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
                     <GridViewColumn Header="Цвет" DisplayMemberBinding="{Binding Color}"/>
                 </GridView>
             </ListView.View>

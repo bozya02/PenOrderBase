@@ -32,7 +32,7 @@ namespace PenOrderBase.Pages
             InitializeComponent();
 
             Pens = DataAccess.GetPens();
-            Pens = Pens.ToList();
+            FilteredPens = Pens.ToList();
             
             PenTypes = DataAccess.GetPenTypes();
             PenTypes.Insert(0, new PenType
@@ -50,6 +50,16 @@ namespace PenOrderBase.Pages
 
             cbSortings.ItemsSource = Sortings.Keys;
             this.DataContext = this;
+
+            DataAccess.AddNewItemEvent += DataAccess_AddNewItemEvent;
+        }
+
+        private void DataAccess_AddNewItemEvent()
+        {
+            Pens = DataAccess.GetPens();
+            ApplyFilters();
+
+            lvPens.Items.Refresh();
         }
 
         private void ApplyFilters()
@@ -57,6 +67,9 @@ namespace PenOrderBase.Pages
             var search = tbSearch.Text;
             var sorting = Sortings[cbSortings.SelectedItem as string];
             var penType = cbPenType.SelectedItem as Core.PenType;
+
+            if (penType == null)
+                return;
 
             FilteredPens = Pens.FindAll(x => x.Name.ToLower().Contains(search));
 

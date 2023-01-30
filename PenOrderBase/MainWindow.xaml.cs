@@ -61,7 +61,7 @@ namespace PenOrderBase
         {
             if (MenuVisible)
             {
-                gridMenu.Width += 2;
+                gridMenu.Width += 15;
                 if (gridMenu.Width >= 200)
                 {
                     _timer.Stop();
@@ -70,7 +70,7 @@ namespace PenOrderBase
             }
             else
             {
-                gridMenu.Width -= 2;
+                gridMenu.Width -= 15;
                 if (gridMenu.Width <= 0)
                 {
                     _timer.Stop();

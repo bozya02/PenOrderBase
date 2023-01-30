@@ -42,6 +42,16 @@ namespace PenOrderBase.Pages
 
             cbSortings.ItemsSource = Sortings.Keys;
             this.DataContext = this;
+
+            DataAccess.AddNewItemEvent += DataAccess_AddNewItemEvent;
+        }
+
+        private void DataAccess_AddNewItemEvent()
+        {
+            Orders = DataAccess.GetOrders();
+            ApplyFilters();
+
+            lvOrders.Items.Refresh();
         }
 
         private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

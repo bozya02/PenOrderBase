@@ -21,6 +21,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -49,6 +50,7 @@
           <Property Name="CompanyId" Type="int" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PenType">
           <Key>
@@ -239,6 +241,7 @@
           <NavigationProperty Name="CustomerType" Relationship="OrderBaseBozyaModel.FK_Customer_CustomerType" FromRole="Customer" ToRole="CustomerType" />
           <NavigationProperty Name="User" Relationship="OrderBaseBozyaModel.FK_Customer_User" FromRole="Customer" ToRole="User" />
           <NavigationProperty Name="Orders" Relationship="OrderBaseBozyaModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -273,6 +276,7 @@
           <NavigationProperty Name="Company" Relationship="OrderBaseBozyaModel.FK_Pen_Company" FromRole="Pen" ToRole="Company" />
           <NavigationProperty Name="Orders" Relationship="OrderBaseBozyaModel.FK_Order_Pen" FromRole="Pen" ToRole="Order" />
           <NavigationProperty Name="PenType" Relationship="OrderBaseBozyaModel.FK_Pen_PenType" FromRole="Pen" ToRole="PenType" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PenType">
           <Key>
@@ -390,6 +394,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="OrderBaseBozyaModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -420,6 +425,7 @@
           <EntitySetMapping Name="Pens">
             <EntityTypeMapping TypeName="OrderBaseBozyaModel.Pen">
               <MappingFragment StoreEntitySet="Pen">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
