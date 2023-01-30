@@ -17,19 +17,21 @@ using System.Windows.Shapes;
 namespace PenOrderBase.Pages
 {
     /// <summary>
-    /// Interaction logic for OrderPage.xaml
+    /// Interaction logic for PenPage.xaml
     /// </summary>
-    public partial class OrderPage : Page
+    public partial class PenPage : Page
     {
-        public Order Order { get; set; }
-        public List<Core.Pen> Pens { get; set; }
+        public Core.Pen Pen { get; set; }
+        public List<PenType> PenTypes { get; set; }
+        public List<Company> Companies { get; set; }
 
-        public OrderPage(Order order, bool isNew = false)
+        public PenPage(Core.Pen pen, bool isNew = false)
         {
             InitializeComponent();
 
-            Order = order;
-            Pens = DataAccess.GetPens();
+            Pen = pen;
+            PenTypes = DataAccess.GetPenTypes();
+            Companies = DataAccess.GetCompanies();
 
             if (isNew)
             {
@@ -37,7 +39,7 @@ namespace PenOrderBase.Pages
             }
             else
             {
-                Title += $" {Order.Id}";
+                Title += $" {Pen.Id}";
                 IsEnabled = false;
             }
 

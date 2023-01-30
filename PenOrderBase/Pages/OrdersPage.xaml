@@ -48,11 +48,11 @@
         <ListView x:Name="lvOrders" ItemsSource="{Binding FilteredOrders}" Grid.Row="1" FontSize="24" SelectionChanged="lvOrders_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date, StringFormat=d, ConverterCulture=ru}"/>
-                    <GridViewColumn Header="Ручка" DisplayMemberBinding="{Binding Pen.Name, StringFormat=d, ConverterCulture=ru}"/>
-                    <GridViewColumn Header="Тип ручки" DisplayMemberBinding="{Binding Pen.PenType.Name, StringFormat=d, ConverterCulture=ru}"/>
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Pen.Price, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="Ручка" DisplayMemberBinding="{Binding Pen.Name}"/>
+                    <GridViewColumn Header="Тип ручки" DisplayMemberBinding="{Binding Pen.PenType.Name}"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Pen.Price}"/>
                 </GridView>
             </ListView.View>
         </ListView>

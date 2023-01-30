@@ -6,9 +6,64 @@
       xmlns:local="clr-namespace:PenOrderBase.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PensListPage">
-
+      Title="Ручки">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
     <Grid>
-        <TextBlock Text="Лист пенов"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Поиск"/>
+            <TextBox x:Name="tbSearch" Grid.Row="1" FontSize="24" Margin="5"
+                     TextChanged="tbSearch_TextChanged"/>
+
+            <TextBlock Text="Сортировка" Grid.Column="1"/>
+            <ComboBox x:Name="cbSortings" Grid.Row="1" Grid.Column="1"
+                      FontSize="24" Margin="5"
+                      ItemsSource="{Binding Sortings.Kyes}" SelectedIndex="0"
+                      SelectionChanged="cbSortings_SelectionChanged"/>
+
+            <TextBlock Text="Тип" Grid.Column="2"/>
+            <ComboBox x:Name="cbPenType" Grid.Row="1" Grid.Column="2"
+                      FontSize="24" Margin="5"
+                      ItemsSource="{Binding PenTypes}" SelectedIndex="0"
+                      SelectionChanged="cbPenType_SelectionChanged"/>
+            
+            <Button x:Name="btnNewOrder" Content="Новый заказ"
+                    Grid.Column="3" Grid.RowSpan="2"
+                    Click="btnNewPen_Click"/>
+        </Grid>
+
+        <ListView x:Name="lvPens" ItemsSource="{Binding FilteredPens}" Grid.Row="1" FontSize="24" SelectionChanged="lvPens_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id, StringFormat=d, ConverterCulture=ru}"/>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Тип ручки" DisplayMemberBinding="{Binding PenType.Name}"/>
+                    <GridViewColumn Header="Компания" DisplayMemberBinding="{Binding Companyю.Name}"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Pen.Price}"/>
+                    <GridViewColumn Header="Цвет" DisplayMemberBinding="{Binding Color}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

@@ -67,6 +67,8 @@ namespace PenOrderBase.Pages
             FilteredOrders = (cbSortings.SelectedItem as string).Contains("убыванию") ?
                 FilteredOrders.OrderByDescending(sorting).ToList() :
                 FilteredOrders.OrderBy(sorting).ToList();
+
+            lvOrders.ItemsSource = FilteredOrders;
         }
 
         private void btnNewOrder_Click(object sender, RoutedEventArgs e)
