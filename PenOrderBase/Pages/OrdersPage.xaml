@@ -53,6 +53,7 @@
                     <GridViewColumn Header="Ручка" DisplayMemberBinding="{Binding Pen.Name}"/>
                     <GridViewColumn Header="Тип ручки" DisplayMemberBinding="{Binding Pen.PenType.Name}"/>
                     <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Pen.Price}"/>
+                    <GridViewColumn Header="Итоговая стоимость" DisplayMemberBinding="{Binding Sum}"/>
                 </GridView>
             </ListView.View>
         </ListView>

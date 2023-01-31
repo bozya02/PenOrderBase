@@ -34,7 +34,7 @@
         <TextBox Text="{Binding Order.Count}" Grid.Row="1" Grid.Column="1"/>
         
         <TextBlock Text="Чурка"/>
-        <ComboBox Grid.Column="1" Margin="30 50"
+        <ComboBox Grid.Column="1" Margin="30 50" FontSize="28"
                   ItemsSource="{Binding Pens}" SelectedItem="{Binding Order.Pen}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>

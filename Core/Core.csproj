@@ -64,6 +64,7 @@
       <DependentUpon>PenOrderBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderBaseBozyaEntities.cs" />
+    <Compile Include="OrderPartial.cs" />
     <Compile Include="Pen.cs">
       <DependentUpon>PenOrderBaseModel.tt</DependentUpon>
     </Compile>
